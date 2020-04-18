@@ -14,15 +14,21 @@ p {
     font-size: 20px;
 }
 
-#slogan {
-
-}
-
-
 body {
     background-image: url("https://img.freepik.com/free-vector/background-white-elegant-texture_23-2148438404.jpg?size=626&ext=jpg");
 }
 
 body {
     text-align: center;
+}
+
+.discription {
+    border:10px; 
+    border-style:solid; 
+    border-color:rgb(26, 26, 134); 
+    padding-right: 3em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 3em;
+
 }
