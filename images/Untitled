@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+
+
+<body>
+
+    <h1 id = "hotelName"></h1>
+    <h5 id = "slogan"></h5>
+
+    <p>Available Rooms:</p>
+    <p id = "AvailRoomList">   </p>
+
+    <!-- <select>
+        "<option value='101'>101</option>
+        <option value='102'>102</option>
+
+    </select> -->
+
+    <script src="domhotel01.js"></script>
+
+</body>
+
+</html>
