@@ -5,9 +5,17 @@ let domHotel = {
   availableRooms: [[101, 102, 103, 104], [201, 202], [], [401, 402, 403]],
   bookedRooms: [[], [], [], []],
   roomTypes: ["Single", "Double", "Queen", "King"],
+  currentRoomBooked: [],
+  currentFloorBooked: [],
 
   bookRooms: function () {
-    this.bookedRooms[0].push(this.availableRooms[0].pop());
+    this.availableRooms[this.currentFloorBooked].splice(
+      this.availableRooms[this.currentFloorBooked].indexOf(
+        this.currentRoomBooked
+      ),
+      1
+    );
+    this.bookedRooms[this.currentFloorBooked].push(this.currentRoomBooked);
     this.updateAvailableRoomsInDom;
   },
 
@@ -31,6 +39,16 @@ let domHotel = {
   },
 };
 
+function selectRoom(floor, roomNum) {
+  let floorNumber = floor - 1;
+  if (domHotel.availableRooms[floorNumber].includes(roomNum)) {
+    domHotel.currentRoomBooked = roomNum;
+    domHotel.currentFloorBooked = floorNumber;
+    domHotel.bookRooms();
+  } else {
+    console.log(`Room #${num} is unavailable!`);
+  }
+}
+
 domHotel.updateAvailableRoomsInDom();
-domHotel.bookRooms();
-domHotel.unBookRoom();
+selectRoom(1, 102);
