@@ -7,6 +7,8 @@ let domHotel = {
   roomTypes: ["Single", "Double", "Queen", "King"],
   currentRoomBooked: [],
   currentFloorBooked: [],
+  currentRoomUnBooked: [],
+  currentFloorUnBooked: [],
 
   bookRooms: function () {
     this.availableRooms[this.currentFloorBooked].splice(
@@ -20,8 +22,17 @@ let domHotel = {
   },
 
   unBookRoom: function () {
-    this.availableRooms[0].push(this.bookedRooms[0].pop());
-    this.updateAvailableRoomsInDom;
+    this.bookedRooms[this.currentFloorUnBooked].splice(
+      this.bookedRooms[this.currentFloorUnBooked].indexOf(
+        this.currentRoomUnBooked
+      ),
+      1
+    );
+    this.availableRooms[this.currentFloorUnBooked].push(
+      this.currentRoomUnBooked
+    );
+    //this.availableRooms[0].push(this.bookedRooms[0].pop());
+    this.updateAvailableRoomsInDom();
   },
 
   updateAvailableRoomsInDom: function () {
@@ -45,6 +56,10 @@ function selectRoom(floor, roomNum) {
     domHotel.currentRoomBooked = roomNum;
     domHotel.currentFloorBooked = floorNumber;
     domHotel.bookRooms();
+  } else if (domHotel.bookedRooms[floorNumber].includes(roomNum)) {
+    domHotel.currentRoomUnBooked = roomNum;
+    domHotel.currentFloorUnBooked = floorNumber;
+    domHotel.unBookRoom();
   } else {
     console.log(`Room #${roomNum} is unavailable!`);
   }
@@ -52,3 +67,6 @@ function selectRoom(floor, roomNum) {
 
 domHotel.updateAvailableRoomsInDom();
 selectRoom(1, 102);
+selectRoom(4, 401);
+selectRoom(2, 202);
+selectRoom(2, 202);
