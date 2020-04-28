@@ -16,7 +16,7 @@ let domHotel = {
       1
     );
     this.bookedRooms[this.currentFloorBooked].push(this.currentRoomBooked);
-    this.updateAvailableRoomsInDom;
+    this.updateAvailableRoomsInDom();
   },
 
   unBookRoom: function () {
@@ -46,7 +46,7 @@ function selectRoom(floor, roomNum) {
     domHotel.currentFloorBooked = floorNumber;
     domHotel.bookRooms();
   } else {
-    console.log(`Room #${num} is unavailable!`);
+    console.log(`Room #${roomNum} is unavailable!`);
   }
 }
 
