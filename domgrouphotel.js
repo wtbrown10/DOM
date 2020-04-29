@@ -5,7 +5,7 @@ let hotel = {
   availableRooms: [
     [101, 102, 103, 104],
     [201, 202, 203, 204],
-    [301, 302, 303, 304],
+    [301, 302, 303],
     [401, 402],
   ],
   roomTypes: ["Single", "Double", "King", "Queen"],
@@ -16,6 +16,27 @@ let hotel = {
     for (let i = 0; i < this.availableRooms.length; i++) {
       this.bookedRooms.push([]);
     }
+  },
+
+  bookSelectedRoom: function () {
+    let selectedRoom = parseInt(
+      document.getElementById("availableSelect").value
+    );
+    console.log(selectedRoom);
+    for (let i = 0; i < this.availableRooms.length; i++) {
+      for (let j = 0; j < this.availableRooms[i].length; j++) {
+        if (selectedRoom === this.availableRooms[i][j]) {
+          this.bookedRooms[i].push(
+            this.availableRooms[i].splice(
+              this.availableRooms[i].indexOf(selectedRoom),
+              1
+            )
+          );
+        }
+      }
+    }
+    this.updateAvailableRooms();
+    this.updateBookedRooms();
   },
 
   updateAvailableRooms: function () {
@@ -33,7 +54,7 @@ let hotel = {
   },
 
   updateBookedRooms: function () {
-    let dropDown = "<select id='availableSelect'>";
+    let dropDown = "<select>";
 
     for (let i = 0; i < this.bookedRooms.length; i++) {
       for (let j = 0; j < this.bookedRooms[i].length; j++) {
