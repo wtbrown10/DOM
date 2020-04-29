@@ -31,8 +31,7 @@ let domHotel = {
     this.availableRooms[this.currentFloorUnBooked].push(
       this.currentRoomUnBooked
     );
-    //this.availableRooms[0].push(this.bookedRooms[0].pop());
-    this.updateAvailableRoomsInDom();
+    this.updateUnAvailableRoomsInDom();
   },
 
   updateAvailableRoomsInDom: function () {
@@ -47,6 +46,20 @@ let domHotel = {
     }
     dropDown = dropDown + "</select>";
     document.getElementById("availableRooms").innerHTML = dropDown;
+  },
+
+  updateUnAvailableRoomsInDom: function () {
+    dropDown = "<select>";
+
+    for (let i = 0; i < domHotel.bookedRooms.length; i++) {
+      for (let j = 0; j < domHotel.bookedRooms[i].length; j++) {
+        dropDown =
+          dropDown +
+          `<option value'${domHotel.bookedRooms[i][j]}'>${domHotel.bookedRooms[i][j]}</option>`;
+      }
+    }
+    dropDown = dropDown + "</select>";
+    document.getElementById("unavailableRooms").innerHTML = dropDown;
   },
 };
 
