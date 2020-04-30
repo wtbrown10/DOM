@@ -39,6 +39,27 @@ let hotel = {
     this.updateBookedRooms();
   },
 
+  unBookSelectedRoom: function () {
+    let selectedRoom = parseInt(
+      document.getElementById("unBookedSelect").value
+    );
+    console.log(selectedRoom);
+    for (let i = 0; i < this.bookedRooms.length; i++) {
+      for (let j = 0; j < this.bookedRooms[i].length; j++) {
+        if (selectedRoom == this.bookedRooms[i][j]) {
+          this.availableRooms[i].push(
+            this.bookedRooms[i].splice(
+              this.bookedRooms[i].indexOf(this.bookedRooms[i][j]),
+              1
+            )
+          );
+        }
+      }
+    }
+    this.updateAvailableRooms();
+    this.updateBookedRooms();
+  },
+
   updateAvailableRooms: function () {
     let dropDown = "<select id='availableSelect'>";
 
@@ -54,7 +75,7 @@ let hotel = {
   },
 
   updateBookedRooms: function () {
-    let dropDown = "<select>";
+    let dropDown = "<select id='unBookedSelect'>";
 
     for (let i = 0; i < this.bookedRooms.length; i++) {
       for (let j = 0; j < this.bookedRooms[i].length; j++) {
